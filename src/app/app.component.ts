@@ -7,4 +7,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  compo: any;
+
+  onActivate(componentReference) {
+    this.compo = componentReference;
+  }
+
+  listProd(e) {
+    console.log(e);
+    console.log(this.compo);
+    if (this.compo.compName == 'Productos') {
+      this.compo.listProducts(e);
+    }
+  }
+
 }

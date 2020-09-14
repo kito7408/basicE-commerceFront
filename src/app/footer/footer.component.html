@@ -1,0 +1,19 @@
+<footer class="bg-dark text-white pt-4 fixed-bottom">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 pl-5">
+        <h5 class="text-uppercase">Información</h5>
+        <ul>
+          <li><a class="text-white" routerLink="/terms" routerLinkActive="active">Términos y Condiciones</a></li>
+          <li><a class="text-white" routerLink="/preguntas" routerLinkActive="active">Preguntas Frecuentes</a></li>
+          <li><a class="text-white" routerLink="/contacto" routerLinkActive="active">Contáctenos</a></li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <a (click)="listAll()" routerLink="/productos" routerLinkActive="active">
+          <img src="../../assets/imgs/logo-e-commerce.png" class="footer-logo">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

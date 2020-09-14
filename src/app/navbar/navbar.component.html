@@ -1,0 +1,235 @@
+<nav class="navbar navbar-light bg-light justify-content-between navbar-expand-lg">
+  <a routerLink="/productos" routerLinkActive="active" (click)="listAll()"><img src="../../assets/imgs/logo-e-commerce.png"
+      class="navbar-logo navbar-brand"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse nav-elements" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" (click)="listProdCat(1);">Linea Blanca</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="listProdCat(2);">Ropa</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="listProdCat(3);">Juguetes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="listProdCat(4);">Computo</a>
+      </li>
+    </ul>
+    <form class="form-inline pr-3 pl-2">
+      <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" id="search" name="search" [(ngModel)]="searchText" (ngModelChange)="listProdSearch($event)">
+      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd"
+          d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
+        <path fill-rule="evenodd"
+          d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+      </svg>
+    </form>
+    <div *ngIf="user" class="d-flex">
+      <button *ngIf="user" type="button" class="btn btn-outline-secondary mr-3" routerLink="/carrito" routerLinkActive="active">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart-fill" fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+        </svg>
+      </button>
+      <div class="dropdown">
+        <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          {{user.nombre}}
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+          <button *ngIf="user.userTypeId == 1" type="button" class="dropdown-item" data-toggle="modal"
+            data-target="#ModalNewUser">Agregar Usuario</button>
+          <button *ngIf="user.userTypeId == 1" type="button" class="dropdown-item" data-toggle="modal"
+            data-target="#ModalNewProduct">Agregar Producto</button>
+          <button type="button" class="dropdown-item" (click)="logout();" routerLink="/">Salir</button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!user">
+      <button type="button" class="btn btn-link text-dark" data-toggle="modal"
+        data-target="#ModalIngreso">Ingresar</button>
+      /
+      <button type="button" class="btn btn-link text-dark" data-toggle="modal"
+        data-target="#ModalRegistro">Registrarse</button>
+    </div>
+  </div>
+</nav>
+
+
+<div class="modal fade" id="ModalIngreso" tabindex="-1" role="dialog" aria-labelledby="ModalIngreso" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalIngresoLongTitle">Ingresar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeLoginModal
+          (click)="closeModal();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="usernameLog">Usuario</label>
+            <input type="text" class="form-control" id="usernameLog" name="usernameLog" [(ngModel)]="newUser.username">
+          </div>
+          <div class="form-group">
+            <label for="contraseñaLog">Contraseña</label>
+            <input type="password" class="form-control" id="contraseñaLog" name="contraseñaLog"
+              [(ngModel)]="newUser.password">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal();">Cerrar</button>
+          <button type="submit" class="btn btn-primary" (click)="login();" routerLink="/">Ingresar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="ModalRegistro" tabindex="-1" role="dialog" aria-labelledby="ModalRegistro"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalRegistroLongTitle" routerLink="/">Registrarse</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeRegModal
+          (click)="closeModal();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="nombreReg">Nombre</label>
+            <input type="text" class="form-control" id="nombreReg" name="nombreReg" [(ngModel)]="newUser.nombre">
+          </div>
+          <div class="form-group">
+            <label for="usernameReg">Usuario</label>
+            <input type="text" class="form-control" id="usernameReg" name="usernameReg" [(ngModel)]="newUser.username">
+          </div>
+          <div class="form-group">
+            <label for="contraseñaReg">Contraseña</label>
+            <input type="password" class="form-control" id="contraseñaReg" name="contraseñaReg"
+              [(ngModel)]="newUser.password">
+          </div>
+          <div class="form-group">
+            <label for="re-contraseñaReg">Repetir Contraseña</label>
+            <input type="password" class="form-control" id="re-contraseñaReg" name="re-contraseñaReg"
+              [(ngModel)]="repass">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal();">Cerrar</button>
+          <button type="submit" class="btn btn-primary" (click)="register();">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="ModalNewUser" tabindex="-1" role="dialog" aria-labelledby="ModalNewUser" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalNewUserLongTitle">Nuevo Usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeAddUserModal
+          (click)="closeModal();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="nombreAU">Nombre</label>
+            <input type="text" class="form-control" id="nombreAU" name="nombreAU" [(ngModel)]="newUser.nombre">
+          </div>
+          <div class="form-group">
+            <label for="usernameAU">Usuario</label>
+            <input type="text" class="form-control" id="usernameAU" name="usernameAU" [(ngModel)]="newUser.username">
+          </div>
+          <div class="form-group">
+            <label for="contraseñaAU">Contraseña</label>
+            <input type="password" class="form-control" id="contraseñaAU" name="contraseñaAU"
+              [(ngModel)]="newUser.password">
+          </div>
+          <div class="form-group">
+            <label for="re-contraseñaAU">Repetir Contraseña</label>
+            <input type="password" class="form-control" id="re-contraseñaAU" name="re-contraseñaAU"
+              [(ngModel)]="repass">
+          </div>
+          <div class="form-group">
+            <label for="userType">Tipo de Usuario</label>
+            <select class="form-control" id="admin" name="admin" [(ngModel)]="newUser.userTypeId">
+              <option value="1">Admin</option>
+              <option value="2">Normal</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal();">Cerrar</button>
+          <button type="submit" class="btn btn-primary" (click)="register();">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="ModalNewProduct" tabindex="-1" role="dialog" aria-labelledby="ModalNewProduct"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalNewProductLongTitle">Nuevo Producto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeAddProductModal
+          (click)="closeModal();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="nombreProd">Nombre</label>
+            <input type="text" class="form-control" id="nombreProd" name="nombreProd" [(ngModel)]="newProduct.nombre">
+          </div>
+          <div class="form-group">
+            <label for="categoriaProd">Categoria</label>
+            <select class="form-control" id="categoriaProd" name="categoriaProd" [(ngModel)]="newProduct.categoriaId">
+              <option value="1">Linea Blanca</option>
+              <option value="2">Ropa</option>
+              <option value="3">Juguetes</option>
+              <option value="4">Computo</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="imagenProd">Imagen</label>
+            <input type="file" class="form-control-file" id="imagenProd" name="imagenProd"
+              (change)="selectFile($event)">
+          </div>
+          <div [innerHtml]='filemsg' *ngIf="filemsg" style="color: red;"></div>
+          <div class="form-group">
+            <label for="precioProd">Precio</label>
+            <input type="number" class="form-control" id="precioProd" name="precioProd" [(ngModel)]="newProduct.precio">
+          </div>
+          <div class="form-group">
+            <label for="descripcionProd">Descripción</label>
+            <textarea class="form-control" id="descripcionProd" name="descripcionProd" cols="30" rows="4"
+              [(ngModel)]="newProduct.descripcion"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal();">Cerrar</button>
+          <button type="submit" class="btn btn-primary" (click)="addProd();">Agregar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
