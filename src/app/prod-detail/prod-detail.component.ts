@@ -36,13 +36,13 @@ export class ProdDetailComponent implements OnInit {
           case 1:
             this.stringTitle = "Linea Blanca > " + this.producto.nombre;
             break;
-          case 2:
+          case 11:
             this.stringTitle = "Ropa > " + this.producto.nombre;
             break;
-          case 3:
+          case 21:
             this.stringTitle = "Juguetes > " + this.producto.nombre;
             break;
-          case 4:
+          case 31:
             this.stringTitle = "Computo > " + this.producto.nombre;
             break;
           default:

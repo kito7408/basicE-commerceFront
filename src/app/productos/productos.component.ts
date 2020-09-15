@@ -45,13 +45,13 @@ export class ProductosComponent implements OnInit {
             case 1:
               this.filterString = "Productos > Linea Blanca";
               break;
-            case 2:
+            case 11:
               this.filterString = "Productos > Ropa";
               break;
-            case 3:
+            case 21:
               this.filterString = "Productos > Juguetes";
               break;
-            case 4:
+            case 31:
               this.filterString = "Productos > Computo";
               break;
 
