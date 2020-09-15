@@ -29,12 +29,6 @@
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
     "core-js": "^2.5.4",
-<<<<<<< HEAD
-    "express": "^4.17.1",
-    "jquery": "^3.5.1",
-    "path": "^0.12.7",
-=======
->>>>>>> parent of 4f94d49... first commit
     "rxjs": "^6.0.0",
     "typescript": "~2.7.2",
     "zone.js": "^0.8.26"
