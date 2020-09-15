@@ -8,7 +8,7 @@ import { Producto } from '../classes/producto';
 })
 export class ProductoService {
 
-  private url = 'api/productos';
+  private url = 'https://backtestsonr.herokuapp.com/productos';
 
   constructor(private http: HttpClient) { }
 

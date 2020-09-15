@@ -9,7 +9,7 @@ import { CarritoPost } from '../classes/carritoPost';
 })
 export class CarritoService {
 
-  private url = 'api/carrito';
+  private url = 'https://backtestsonr.herokuapp.com/carrito';
 
   constructor(private http: HttpClient) { }
 

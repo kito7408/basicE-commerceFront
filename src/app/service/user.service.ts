@@ -8,7 +8,7 @@ import { User } from '../classes/user';
 })
 export class UserService {
 
-  private url = 'api/users';
+  private url = 'https://backtestsonr.herokuapp.com/users';
 
   constructor(private http: HttpClient) { }
 

@@ -43,7 +43,7 @@ export class NavbarComponent implements OnInit {
     this.errorProd = false;
     this.filemsg = '';
     this.searchText = '';
-    this.newUser.userTypeId = 2;
+    this.newUser.userTypeId = 11;
     if (localStorage.getItem('user')) {
       this.user = JSON.parse(localStorage.getItem('user'));
     }
@@ -98,7 +98,7 @@ export class NavbarComponent implements OnInit {
   closeModal() {
     this.newUser = new User;
     this.repass = '';
-    this.newUser.userTypeId = 2;
+    this.newUser.userTypeId = 11;
     this.newProduct = new Producto;
   }
 
