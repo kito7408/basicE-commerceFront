@@ -15,7 +15,7 @@
           <div>
             <p>{{prod.nombre}}</p>
             <div class="img-prod-section">
-              <img [src]="'http://localhost:3000/' + prod.imagen" class="prod-img">
+              <img [src]="'https://backtestsonr.herokuapp.com/' + prod.imagen" class="prod-img">
             </div>
             <button class="btn btn-info" (click)="verProd(prod.id)" routerLink="/productos/{{prod.id}}" routerLinkActive="active">Ver más</button>
           </div>
